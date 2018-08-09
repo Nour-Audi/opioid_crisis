@@ -64,5 +64,15 @@ presrate_2007 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx",
 
 presrate_2006 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
     sheet = "2006", col_types = c("text", 
-        "text", "numeric", "numeric", "numeric"))
+        "text", "numeric", "numeric", "numeric")) 
+ presrate_2006_full <-  presrate_2006[complete.cases(presrate_2006), ]
+```
+
+```{r}
+# combine tables 
+presrate_2006_2016 <- bind_rows(presrate_2006, presrate_2007, presrate_2008, presrate_2009, presrate_2010, presrate_2011, presrate_2012, presrate_2013, presrate_2014, presrate_2015, presrate_2016)
+
+# only rows with complete data
+presrate_2006_2016 <-  presrate_2006_2016 [complete.cases(presrate_2006_2016), ]
+
 ```
