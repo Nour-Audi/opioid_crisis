@@ -74,6 +74,13 @@ presrate_2006_2016 <- bind_rows(presrate_2006, presrate_2007, presrate_2008, pre
 # only rows with complete data
 presrate_2006_2016 <-  presrate_2006_2016 [complete.cases(presrate_2006_2016), ]
 
+#change column names to match overdose mortality table
+
+names(presrate_2006_2016)[names(presrate_2006_2016)=="FIPS County Code"] <- "FIPS"
+names(presrate_2006_2016)[names(presrate_2006_2016)=="County"] <- "county"
+
+colnames(presrate_2006_2016)
+
 ```
 
 ```{r}
@@ -84,6 +91,12 @@ overdose_mortality <- read_excel("data/NCHS_-_Drug_Poisoning_Mortality_by_County
         "numeric", "text", "numeric", "text", 
         "numeric"))
 overdose_mortality_complete <-  overdose_mortality[complete.cases(overdose_mortality), ]
+```
+
+```{r}
+joined <- merge( presrate_2006_2016, overdose_mortality, by = c( "FIPS" , "year" ))
 
 ```
+
+
 
