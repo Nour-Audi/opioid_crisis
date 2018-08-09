@@ -12,8 +12,57 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Understanding the correlation between opioids prescription rate and drug overdose morality rate on county level
 
 ```{r, include = False}
+#open needed libraries 
 library(tidyverse)
+library(readxl)
 
 
+```
 
-````
+```{r}
+# import opioid prescription rate tables 
+
+presrate_2016 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+      sheet = "2016")
+
+presrate_2015 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+    sheet = "2015", col_types = c("text", 
+         "text", "numeric", "numeric", "numeric"))
+
+presrate_2014 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+                            sheet = "2014",
+    col_types = c("text", "text", "numeric", 
+        "numeric", "numeric"))
+
+presrate_2013 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+    sheet = "2013", col_types = c("text", 
+        "text", "numeric", "numeric", "numeric"))
+
+presrate_2012 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+    sheet = "2012", col_types = c("text", 
+        "text", "numeric", "numeric", "numeric"))
+
+presrate_2011 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+    sheet = "2011", col_types = c("text", 
+        "text", "numeric", "numeric", "numeric"))
+
+presrate_2010 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+    sheet = "2010", col_types = c("text", 
+        "text", "numeric", "numeric", "numeric"))
+
+presrate_2009 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+    sheet = "2009", col_types = c("text", 
+        "text", "numeric", "numeric", "numeric"))
+
+presrate_2008 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+    sheet = "2008", col_types = c("text", 
+        "text", "numeric", "numeric", "numeric"))
+
+presrate_2007 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+    sheet = "2007", col_types = c("text", 
+        "text", "numeric", "numeric", "numeric"))
+
+presrate_2006 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
+    sheet = "2006", col_types = c("text", 
+        "text", "numeric", "numeric", "numeric"))
+```
