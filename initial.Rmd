@@ -75,3 +75,15 @@ presrate_2006_2016 <- bind_rows(presrate_2006, presrate_2007, presrate_2008, pre
 presrate_2006_2016 <-  presrate_2006_2016 [complete.cases(presrate_2006_2016), ]
 
 ```
+
+```{r}
+# import overdose mortality rates (per 100 0000), 
+                #  lower side of the mortality rate range is a text, problem with values recorded as "<2". 
+overdose_mortality <- read_excel("data/NCHS_-_Drug_Poisoning_Mortality_by_County__United_States.xlsx", 
+    col_types = c("numeric", "numeric", "text", 
+        "numeric", "text", "numeric", "text", 
+        "numeric"))
+overdose_mortality_complete <-  overdose_mortality[complete.cases(overdose_mortality), ]
+
+```
+
