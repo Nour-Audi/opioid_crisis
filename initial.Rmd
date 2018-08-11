@@ -94,7 +94,16 @@ overdose_mortality_complete <-  overdose_mortality[complete.cases(overdose_morta
 ```
 
 ```{r}
+#join the both tables. PS: only rows with complete data. this yielded 30801 obs / 11 years = 2800 counties out oll all US 3007 counties. 
 joined <- merge( presrate_2006_2016, overdose_mortality, by = c( "FIPS" , "year" ))
+
+#export table into CSV file
+write_excel_csv(x = joined, path = "data/clean_merged.csv")
+```
+
+```{r}
+
+
 
 ```
 
