@@ -34,3 +34,23 @@ pain_studies<- pain_studies[, -c(28:731)]
 
 ```
 
+```{r}
+# graph the number of trials over time
+
+PainPerYear <- pain_studies %>%
+  mutate(start_year = format(pain_studies$`Start Date`, "%Y")) %>%
+                            group_by(start_year) %>%
+  summarise(total = n())
+
+  PainPerYear_graph <- ggplot(data = PainPerYear, aes( x = start_year, y = total)) +
+    geom_col() + xlab("Start Year") + ylab("Total Number of Trials") +
+    ggtitle(" Clinical trials related to pain per year 1977-2020") +
+    theme(plot.title = element_text(hjust = 0.5),
+          axis.text=element_text(size=6)) +
+    geom_label(aes( label = total), size = 2, check_overlap = TRUE)
+  
+  PainPerYear_graph
+
+```
+
+
