@@ -3,19 +3,19 @@ title: "prescription rate and overdose mortality correlation"
 author: "NAudi"
 date: "August 8, 2018"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
   word_document: default
 ---
 
 ```{r setup, include= FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
 ## Understanding the correlation between opioids prescription rate and drug overdose morality rate on county level
 
-```{r}
+```{r }
 #open needed libraries 
 library(tidyverse)
 library(readxl)
