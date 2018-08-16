@@ -59,11 +59,19 @@ PainPerYear <- pain_studies %>%
 
 ConditionPerYear <- pain_studies %>%
   mutate(start_year = format(pain_studies$`Start Date`, "%Y")) %>%
-  group_by(Conditions, start_year) %>%
-  summarise(total = n())
+  group_by( Conditions, start_year) %>%
+  summarise(Conditions_total = n()) %>%
+  group_by(start_year) %>%
+  mutate(start_year_total = n()) %>%
+  ungroup() %>%
+  filter( start_year >= 2005)
 
-ConditionPerYear_graph <- ggplot(data = ConditionPerYear,  aes(x = ConditionPerYear$Conditions, y = total)) + facet_grid(~start_year)
 
+ConditionPerYear_graph <- ggplot(data = ConditionPerYear,  aes( start_year )) + 
+  geom_bar(aes(fill = )) 
 
+ConditionPerYear_graph
+
+write_excel_csv(x = ConditionPerYear, path = "data/ConditionPerYear.csv")
 ```
 
