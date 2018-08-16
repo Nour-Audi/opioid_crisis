@@ -49,7 +49,7 @@ PainPerYear <- pain_studies %>%
           axis.text=element_text(size=6)) +
     geom_label(aes( label = total), size = 2) +
     labs(caption = "Source: www.clinicaltrials.gov, Data retrieved on 2018-08-15")
-  
+  ggsave("plot1.png", width = 14, height = 8)
   PainPerYear_graph
 
 ```
@@ -73,6 +73,7 @@ ConditionPerYear_graph <- ggplot(data = ConditionPerYear, aes(start_year ,
  scale_size_area(max_size = 10) +
   theme(plot.title = element_text(hjust = 0.5),
           axis.text=element_text(size=5)) 
+ggsave("plot2.png", width = 14, height = 8)
 ConditionPerYear_graph
 
 ```
