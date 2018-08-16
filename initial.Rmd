@@ -2,24 +2,27 @@
 title: "prescription rate and overdose mortality correlation"
 author: "NAudi"
 date: "August 8, 2018"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include= FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Understanding the correlation between opioids prescription rate and drug overdose morality rate on county level
 
-```{r, include = False}
+```{r}
 #open needed libraries 
 library(tidyverse)
 library(readxl)
 
-
 ```
 
-```{r}
+```{r, echo= FALSE}
 # import opioid prescription rate tables 
 
 presrate_2016 <- read_excel("data/prescription_rate_per_county_2006_2016.xlsx", 
@@ -101,7 +104,7 @@ colnames(joined)[10] <- "lower"
 colnames(joined)[11] <- "upper" 
 
 #export table into CSV file
-write_excel_csv(x = joined, path = "data/clean_merged.csv")
+write_excel_csv(x = joined, path = "data/clean_merged_mortality_presrate.csv")
 ```
 
 ```{r}
