@@ -1,4 +1,4 @@
-﻿FIPS,year,county.x,State.x,prescription_rate_per100,State.y,FIPS_State,county.y,Population,"lower_Estimated Age adjusted Death Rate, 16 Categories (in ranges)","upper_Estimated Age adjusted Death Rate, 16 Categories (in ranges)"
+﻿FIPS,year,county.x,State.x,prescription_rate_per100,State.y,FIPS_State,county.y,Population,lower,upper
 10001,2006,"Kent, DE",DE,80.9,Delaware,10,"Kent , DE",149704,8,9.9
 10001,2007,"Kent, DE",DE,83.8,Delaware,10,"Kent , DE",153969,10,11.9
 10001,2008,"Kent, DE",DE,83.2,Delaware,10,"Kent , DE",157925,10,11.9
