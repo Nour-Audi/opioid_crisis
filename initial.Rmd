@@ -93,6 +93,7 @@ overdose_mortality <- read_excel("data/NCHS_-_Drug_Poisoning_Mortality_by_County
     col_types = c("numeric", "numeric", "text", 
         "numeric", "text", "numeric", "text", 
         "numeric"))
+# only rows with complete data. CAUTION: this also delete observation with extreme levels of mortality >2,30> 
 overdose_mortality_complete <-  overdose_mortality[complete.cases(overdose_mortality), ]
 ```
 
@@ -102,13 +103,14 @@ joined <- merge( presrate_2006_2016, overdose_mortality, by = c( "FIPS" , "year"
 
 colnames(joined)[10] <- "lower"
 colnames(joined)[11] <- "upper" 
+joined <- joined[, -c(3,4)]
 
 #export table into CSV file
 write_excel_csv(x = joined, path = "data/clean_merged_mortality_presrate.csv")
 ```
 
 ```{r}
-
+# just testing 
 plot(as.numeric(upper) ~ prescription_rate_per100, joined, subset = year == 2015)
 
 
