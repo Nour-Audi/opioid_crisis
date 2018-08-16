@@ -47,10 +47,23 @@ PainPerYear <- pain_studies %>%
     ggtitle(" Clinical trials related to pain per year 1977-2020") +
     theme(plot.title = element_text(hjust = 0.5),
           axis.text=element_text(size=6)) +
-    geom_label(aes( label = total), size = 2, check_overlap = TRUE)
+    geom_label(aes( label = total), size = 2) +
+    labs(caption = "Source: www.clinicaltrials.gov, Data retrieved on 2018-08-15")
   
   PainPerYear_graph
 
 ```
 
+```{r}
+#looking into condition targeted by trials per year 
+
+ConditionPerYear <- pain_studies %>%
+  mutate(start_year = format(pain_studies$`Start Date`, "%Y")) %>%
+  group_by(Conditions, start_year) %>%
+  summarise(total = n())
+
+ConditionPerYear_graph <- ggplot(data = ConditionPerYear,  aes(x = ConditionPerYear$Conditions, y = total)) + facet_grid(~start_year)
+
+
+```
 
