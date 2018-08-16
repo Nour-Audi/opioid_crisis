@@ -64,14 +64,16 @@ ConditionPerYear <- pain_studies %>%
   group_by(start_year) %>%
   mutate(start_year_total = n()) %>%
   ungroup() %>%
-  filter( start_year >= 2005)
+  filter( start_year >= 2005 , Conditions_total >= 3)
 
 
-ConditionPerYear_graph <- ggplot(data = ConditionPerYear,  aes( start_year )) + 
-  geom_bar(aes(fill = )) 
-
+ConditionPerYear_graph <- ggplot(data = ConditionPerYear, aes(start_year ,
+                                                               ConditionPerYear$Conditions)) +
+  geom_count(aes( size = stat(prop), group = Conditions_total, color =  ConditionPerYear$Conditions ), show.legend = F) + 
+ scale_size_area(max_size = 10) +
+  theme(plot.title = element_text(hjust = 0.5),
+          axis.text=element_text(size=5)) 
 ConditionPerYear_graph
 
-write_excel_csv(x = ConditionPerYear, path = "data/ConditionPerYear.csv")
 ```
 
