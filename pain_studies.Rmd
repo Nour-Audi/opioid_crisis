@@ -93,7 +93,7 @@ pain_categorized_year <-  pain_categorized %>%
   ungroup()
 
 pain_categorized_year_graph <- ggplot(data = pain_categorized_year, aes(x = pain_categorized_year$start_year, y = pain_categorized_year$conditions_head_year)) +
-  geom_col( aes(fill = conditions_head,  ))+ xlab("Start Year") + ylab("Total Number of Trials") +
+  geom_col( aes(fill = conditions_head  ))+ xlab("Start Year") + ylab("Total Number of Trials") +
     ggtitle(" Clinical trials related to pain per year 1977-2020") +
     theme(plot.title = element_text(hjust = 0.5),
           axis.text=element_text(size=6), 
@@ -110,4 +110,39 @@ pain_categorized_year_graph
 
 ```
 
+```{r}
+pain_categorized_year2 <-  pain_categorized %>%
+  mutate(start_year = format(pain_categorized$start_date, "%Y")) %>%
+  group_by(start_year, conditions_head) %>%
+  summarise(conditions_head_year = n()) %>%
+  ungroup() %>%
+  filter(start_year >= 2005, start_year < 2019)
 
+pain_categorized_year_graph2 <- ggplot(data = pain_categorized_year2, aes(x = pain_categorized_year2$conditions_head, y = pain_categorized_year2$conditions_head_year)) +
+  geom_col( aes(fill = pain_categorized_year2$conditions_head ))+
+  facet_grid( vars(start_year))+
+  theme( axis.text.x  = element_text( color="#993333", 
+                           size=6, angle=90)) +
+  theme(plot.title = element_text(hjust = 0.5),
+          axis.text=element_text(size=6), 
+          legend.position = "bottom",
+          legend.box = "horizontal", 
+          legend.text = element_text( size = 5),
+          legend.background = element_rect(fill="gray90", size=.3, linetype="dotted"),
+          legend.spacing.x = unit(0.2, 'cm'),
+          legend.spacing.y = unit(0.2, 'cm')) 
+ggsave("plot4.png", width = 14, height = 8)
+pain_categorized_year_graph2
+
+pain_categorized_year_graph3 <- ggplot( data= pain_categorized_year, aes(x = pain_categorized_year$start_year, y = pain_categorized_year$conditions_head_year, color = pain_categorized_year$conditions_head )) +
+  geom_point() + 
+  geom_text(aes( label = pain_categorized_year$conditions_head_year), 
+            size = 2,
+            hjust = 0, nudge_x = 0.3,
+            check_overlap = TRUE) +
+  theme(legend.position = "bottom")
+ggsave("plot5.png", width = 14, height = 8)
+
+pain_categorized_year_graph3
+
+```
