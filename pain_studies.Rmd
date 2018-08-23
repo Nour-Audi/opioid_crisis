@@ -77,4 +77,8 @@ ggsave("plot2.png", width = 14, height = 8)
 ConditionPerYear_graph
 
 ```
+the previous attempt to analyze clinical trials overtime was not successful. Several categorization needed to be merged. Others needed to be sub categorized. Also deleting  trials related to cancer, acute pain and autism. as a result, another query was conducted using the Boolean > pain NOT ( cancer OR acute OR postoperative OR autism). 
+
+Next step was to categorize as per cliniclatrials.gov categories. 
+
 
